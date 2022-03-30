@@ -21,8 +21,30 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let computerSelection = computerPlay();
-let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+function game() {
+    playerWins = 0;
+    computerWins = 0;
+    drawGames = 0;
 
-console.log( playRound(playerSelection, computerSelection) );
+    for (i = 0 ; i < 5 ; i++) {
+        let computerSelection = computerPlay();
+        let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+        let result = playRound(playerSelection, computerSelection);
+        console.log(result);
+
+        // Increase win/loss/draw counter
+        (result.charAt(4) == "W") ? playerWins += 1
+        : (result.charAt(4) == "L") ? computerWins += 1 : drawGames += 1;
+        
+        console.log("Player Score: " + playerWins + " : Computer Score: " + computerWins + " : Draw Games: " + drawGames);
+    }
+
+    
+}
+
+
+game();
+
+
+
 
