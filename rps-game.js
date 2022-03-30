@@ -1,26 +1,28 @@
 function computerPlay() {
-    return ['Rock', 'Paper', 'Scissors'][Math.floor(Math.random()*3)];
+    return ['rock', 'paper', 'scissors'][Math.floor(Math.random()*3)];
 }
 
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == computerSelection) {
-        return "Draw!"
-    } else if (playerSelection == "Rock") {
-        return (computerSelection == "Paper") ? "You Lose!" : "You Win!" ;
-    } else if (playerSelection == "Paper") {
-         return (computerSelection == "Scissors") ? "You Lose!" : "You Win!" ;
-    } else if (playerSelection == "Scissors") {
-        return (computerSelection == "Rock") ? "You Lose!" : "You Win!" ;
+        return `Draw! You both picked ${playerSelection}`;
+    } else if (playerSelection == "rock") {
+        return (computerSelection == "paper") ? 
+            `You Lose! ${computerSelection} beats ${playerSelection}` :
+            `You Win! ${playerSelection} beats ${computerSelection}` ;
+    } else if (playerSelection == "paper") {
+         return (computerSelection == "scissors") ? 
+            `You Lose! ${computerSelection} beats ${playerSelection}` :
+            `You Win! ${playerSelection} beats ${computerSelection}` ;
+    } else if (playerSelection == "scissors") {
+        return (computerSelection == "rock") ? 
+            `You Lose! ${computerSelection} beats ${playerSelection}` :
+            `You Win! ${playerSelection} beats ${computerSelection}` ;
     }
 }
 
 let computerSelection = computerPlay();
-console.log(computerSelection);
-
-let playerSelection = prompt("Rock, Paper or Scissors?");
-console.log(playerSelection);
-
+let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
 
 console.log( playRound(playerSelection, computerSelection) );
 
