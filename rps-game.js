@@ -57,7 +57,3 @@ buttons.forEach( (button) => {
 
     });
 });
-
-
-/* Display the running score, and announce a winner of
-     the game once one player reaches 5 points. */
