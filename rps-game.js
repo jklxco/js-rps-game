@@ -21,36 +21,43 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    playerWins = 0;
-    computerWins = 0;
-    drawGames = 0;
-
-    //for (i = 0 ; i < 5 ; i++) {
-        let computerSelection = computerPlay();
-        let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result);
-
-        // Increase win/loss/draw counter
-        (result.charAt(4) == "W") ? playerWins += 1
-        : (result.charAt(4) == "L") ? computerWins += 1 : drawGames += 1;
-        
-    //}
-    console.log("Player Score: " + playerWins + " : Computer Score: " +
-            computerWins + " : Draw Games: " + drawGames);
-}
-
-
 const buttons = document.querySelectorAll('button');
 const container = document.querySelector('#container');
 const resultDiv = document.createElement("div");
-    
+const scoreDiv = document.createElement("div");
+
+let playerWins = 0;
+let computerWins = 0;
+let drawGames = 0;
+
 buttons.forEach( (button) => {
     button.addEventListener( 'click', (e) => {
-        resultDiv.textContent  = playRound(e.target.id, computerPlay() );
-        container.appendChild(resultDiv);
+        
+        if (playerWins < 5 && computerWins < 5) {
+
+            let result  = playRound(e.target.id, computerPlay() );
+            resultDiv.textContent  = result;
+            
+            // Increase win/loss/draw counter
+            (result.charAt(4) == "W") ? playerWins += 1 :
+                    (result.charAt(4) == "L") ? computerWins += 1 : drawGames += 1;
+            
+            // Output score
+            scoreDiv.textContent = ("Player Score: " + playerWins + " - Computer Score: " +
+                    computerWins + " - Draw Games: " + drawGames);
+
+            container.appendChild(resultDiv);
+            container.appendChild(scoreDiv);
+        
+        };
+
+        (playerWins === 5) ? alert("You Win!!!") 
+            : (computerWins === 5) ? alert("You Lose!!!")
+            : pass ;
+
     });
 });
 
 
+/* Display the running score, and announce a winner of
+     the game once one player reaches 5 points. */
