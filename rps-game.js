@@ -26,7 +26,7 @@ function game() {
     computerWins = 0;
     drawGames = 0;
 
-    for (i = 0 ; i < 5 ; i++) {
+    //for (i = 0 ; i < 5 ; i++) {
         let computerSelection = computerPlay();
         let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
         let result = playRound(playerSelection, computerSelection);
@@ -36,15 +36,21 @@ function game() {
         (result.charAt(4) == "W") ? playerWins += 1
         : (result.charAt(4) == "L") ? computerWins += 1 : drawGames += 1;
         
-        console.log("Player Score: " + playerWins + " : Computer Score: " + computerWins + " : Draw Games: " + drawGames);
-    }
-
-    
+    //}
+    console.log("Player Score: " + playerWins + " : Computer Score: " +
+            computerWins + " : Draw Games: " + drawGames);
 }
 
 
-game();
-
-
+const buttons = document.querySelectorAll('button');
+const container = document.querySelector('#container');
+const resultDiv = document.createElement("div");
+    
+buttons.forEach( (button) => {
+    button.addEventListener( 'click', (e) => {
+        resultDiv.textContent  = playRound(e.target.id, computerPlay() );
+        container.appendChild(resultDiv);
+    });
+});
 
 
